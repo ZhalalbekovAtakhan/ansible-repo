@@ -7,8 +7,27 @@
   - name: update repository index
     apt:
       update_cache: yes
+    when: ansible_distribution == "Ubuntu"
 
+ 
   - name: install apache2 package
     apt:
       name: apache2
       state: latest
+    when: ansible_distribution == "Ubuntu" 
+
+
+
+
+
+  - name: update repository index
+    yum:
+      update_cache: yes
+    when: ansible_distribution_version == "CentOS"
+
+
+  - name: install apache2 package
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_distribution_version == "CentOS"
